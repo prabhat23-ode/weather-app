@@ -3,6 +3,7 @@ let btn = document.querySelector("#search-button");
 let place = document.getElementById("location");
 let temp = document.getElementById("temperature");
 let des = document.getElementById("description");
+let wind = document.getElementById("wind-speed");
 
 btn.addEventListener("click", () => {
   if (input.value != "") {
@@ -16,6 +17,7 @@ btn.addEventListener("click", () => {
         return response.json();
       })
       .then((data) => {
+        console.log(data)
         // check for valid data
         if (!data.temperature || !data.description) {
           throw new Error("Invalid data received from the API.");
@@ -24,6 +26,7 @@ btn.addEventListener("click", () => {
         place.textContent = input.value.toUpperCase();
         temp.textContent = data.temperature;
         des.textContent = data.description;
+        wind.textContent = data.wind;
 
         input.value = "";
       })
